@@ -4,14 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Для Танюши ❤️</title>
+<title>Для Танюши</title>
 
 <style>
+
+/* =========================
+ОСНОВА
+========================= */
+
 * {
 box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
 margin: 0;
 width: 100%;
 height: 100%;
@@ -20,39 +26,37 @@ overflow: hidden;
 
 body {
 font-family: Georgia, "Times New Roman", serif;
-background: #08030b;
+background: #05030a;
 color: white;
 }
-
-/* ФОН */
 
 .scene {
 position: fixed;
 inset: 0;
 overflow: hidden;
 
-display: flex;
-justify-content: center;
-align-items: center;
-
 background:
 radial-gradient(
-circle at 50% 45%,
-#6b214c 0%,
-#35132f 30%,
-#17091d 65%,
-#08030b 100%
+circle at center,
+#651e48 0%,
+#35132f 35%,
+#16091d 70%,
+#05030a 100%
 );
 }
 
-/* Мягкое свечение */
+
+/* =========================
+СВЕЧЕНИЕ ФОНА
+========================= */
 
 .scene::before {
 content: "";
+
 position: absolute;
 
-width: 500px;
-height: 500px;
+width: 650px;
+height: 650px;
 
 left: 50%;
 top: 50%;
@@ -61,26 +65,39 @@ transform: translate(-50%, -50%);
 
 border-radius: 50%;
 
-background: rgba(255, 70, 130, 0.15);
+background:
+radial-gradient(
+circle,
+rgba(255, 65, 130, .18),
+transparent 65%
+);
 
-filter: blur(50px);
+filter: blur(20px);
 
-animation: backgroundGlow 4s ease-in-out infinite;
+animation: backgroundGlow 5s ease-in-out infinite;
 }
 
 @keyframes backgroundGlow {
+
 0%, 100% {
-transform: translate(-50%, -50%) scale(0.9);
 opacity: .5;
+transform:
+translate(-50%, -50%)
+scale(.9);
 }
 
 50% {
-transform: translate(-50%, -50%) scale(1.3);
 opacity: 1;
+transform:
+translate(-50%, -50%)
+scale(1.2);
 }
 }
 
-/* ЗВЁЗДЫ */
+
+/* =========================
+ЗВЁЗДЫ
+========================= */
 
 .stars {
 position: absolute;
@@ -91,31 +108,38 @@ z-index: 1;
 .star {
 position: absolute;
 
-width: 2px;
-height: 2px;
+width: 3px;
+height: 3px;
 
 border-radius: 50%;
 
 background: white;
 
-box-shadow: 0 0 8px white;
+box-shadow:
+0 0 6px white,
+0 0 14px rgba(255,255,255,.8);
 
-animation: starBlink 2s ease-in-out infinite alternate;
+animation:
+twinkle 2s ease-in-out infinite alternate;
 }
 
-@keyframes starBlink {
+@keyframes twinkle {
+
 from {
 opacity: .15;
 transform: scale(.5);
 }
 
 to {
-opacity: .9;
+opacity: 1;
 transform: scale(1.5);
 }
 }
 
-/* ОБЩИЙ КОНТЕНТ */
+
+/* =========================
+ОБЩИЙ КОНТЕНТ
+========================= */
 
 .content {
 position: relative;
@@ -126,89 +150,95 @@ height: 100%;
 z-index: 10;
 
 display: flex;
+
 justify-content: center;
 align-items: center;
 
 text-align: center;
 }
 
-/* ПЕРВАЯ НАДПИСЬ */
+
+/* =========================
+0–4 СЕКУНДЫ
+НАЧАЛЬНАЯ НАДПИСЬ
+========================= */
 
 .intro {
 position: absolute;
 
 width: 90%;
 
-font-size: clamp(22px, 6vw, 38px);
+font-size:
+clamp(22px, 5.5vw, 38px);
 
-color: #ffe5ef;
+color: #ffe6ef;
 
 text-shadow:
-0 0 10px rgba(255, 130, 170, .8),
-0 0 30px rgba(255, 60, 130, .5);
+0 0 12px rgba(255,140,180,.8),
+0 0 35px rgba(255,60,130,.5);
 
 opacity: 0;
 
 animation:
-introIn 1.5s ease forwards .5s,
-introOut 1s ease forwards 2.7s;
+introAnimation 4s ease forwards;
 }
 
-@keyframes introIn {
-from {
+@keyframes introAnimation {
+
+0% {
 opacity: 0;
-transform: translateY(25px);
+transform: translateY(30px);
 }
 
-to {
-opacity: 1;
-transform: translateY(0);
-}
-}
-
-@keyframes introOut {
-from {
+15% {
 opacity: 1;
 transform: translateY(0);
 }
 
-to {
+75% {
+opacity: 1;
+transform: translateY(0);
+}
+
+100% {
 opacity: 0;
-transform: translateY(-25px);
+transform: translateY(-30px);
 }
 }
 
-/* СЕРДЦЕ */
+
+/* =========================
+4–10 СЕКУНД
+БОЛЬШОЕ СЕРДЦЕ
+========================= */
 
 .heart-box {
 position: absolute;
 
-width: 170px;
-height: 170px;
-
 left: 50%;
 top: 50%;
+
+width: 180px;
+height: 180px;
+
+opacity: 0;
 
 transform:
 translate(-50%, -50%)
 scale(0);
 
-opacity: 0;
-
 animation:
-heartAppear 1.5s
-cubic-bezier(.17,.89,.32,1.3)
-forwards 2.8s;
+heartAnimation 6s ease forwards 4s;
 }
 
 .heart {
 position: absolute;
 
-width: 90px;
-height: 90px;
+width: 95px;
+height: 95px;
 
-left: 40px;
-top: 45px;
+left: 42px;
+top: 48px;
 
 background: #ff3d78;
 
@@ -219,7 +249,8 @@ border-radius: 10px;
 box-shadow:
 0 0 15px #ff3d78,
 0 0 35px #ff3d78,
-0 0 70px rgba(255, 61, 120, .8);
+0 0 70px rgba(255,61,120,.8),
+0 0 110px rgba(255,61,120,.35);
 }
 
 .heart::before,
@@ -228,8 +259,8 @@ content: "";
 
 position: absolute;
 
-width: 90px;
-height: 90px;
+width: 95px;
+height: 95px;
 
 background: #ff3d78;
 
@@ -238,73 +269,72 @@ border-radius: 50%;
 
 .heart::before {
 left: 0;
-top: -45px;
+top: -48px;
 }
 
 .heart::after {
-left: 45px;
+left: 48px;
 top: 0;
 }
 
-@keyframes heartAppear {
+@keyframes heartAnimation {
 
 0% {
 opacity: 0;
 
 transform:
 translate(-50%, -50%)
-scale(0)
-rotate(0deg);
+scale(0);
 }
 
-60% {
+15% {
 opacity: 1;
 
 transform:
 translate(-50%, -50%)
-scale(1.2)
-rotate(0deg);
+scale(1.2);
 }
 
-80% {
+25% {
 transform:
 translate(-50%, -50%)
-scale(.9);
+scale(.95);
+}
+
+35% {
+transform:
+translate(-50%, -50%)
+scale(1.08);
+}
+
+45% {
+transform:
+translate(-50%, -50%)
+scale(1);
+}
+
+70% {
+opacity: 1;
+
+transform:
+translate(-50%, -50%)
+scale(1.08);
 }
 
 100% {
-opacity: 1;
+opacity: 0;
 
 transform:
 translate(-50%, -50%)
-scale(1);
+scale(1.3);
 }
 }
 
-/* ПУЛЬС */
 
-.heart-box {
-animation:
-heartAppear 1.5s cubic-bezier(.17,.89,.32,1.3) forwards 2.8s,
-heartPulse 1.2s ease-in-out infinite 4.3s;
-}
-
-@keyframes heartPulse {
-
-0%, 100% {
-transform:
-translate(-50%, -50%)
-scale(1);
-}
-
-50% {
-transform:
-translate(-50%, -50%)
-scale(1.12);
-}
-}
-
-/* ТАНЮША */
+/* =========================
+10–15 СЕКУНД
+ТАНЮША
+========================= */
 
 .first-message {
 position: absolute;
@@ -313,56 +343,82 @@ width: 90%;
 
 opacity: 0;
 
+transform:
+translateY(35px)
+scale(.8);
+
 animation:
-messageIn 1.4s ease forwards 4.5s,
-messageOut 1s ease forwards 7.4s;
+firstMessageAnimation 5s ease forwards 10s;
 }
 
 .first-message h1 {
 margin: 0;
 
-font-size: clamp(52px, 14vw, 90px);
+font-size:
+clamp(55px, 14vw, 95px);
 
-color: #fff0f6;
+color: #fff1f6;
 
 text-shadow:
-0 0 10px #ff91b2,
+0 0 10px #ff9ab7,
 0 0 25px #ff477d,
-0 0 60px rgba(255, 71, 125, .8);
+0 0 60px rgba(255,71,125,.8);
 }
 
 .first-message p {
-margin-top: 15px;
+margin-top: 18px;
 
-font-size: clamp(20px, 5vw, 30px);
+font-size:
+clamp(20px, 5vw, 31px);
 
 line-height: 1.5;
 
 color: #ffdeea;
+
+text-shadow:
+0 0 12px rgba(255,130,170,.6);
 }
 
-@keyframes messageIn {
+@keyframes firstMessageAnimation {
 
-from {
+0% {
 opacity: 0;
-transform: scale(.7) translateY(25px);
+
+transform:
+translateY(35px)
+scale(.8);
 }
 
-to {
+20% {
 opacity: 1;
-transform: scale(1) translateY(0);
-}
+
+transform:
+translateY(0)
+scale(1);
 }
 
-@keyframes messageOut {
+75% {
+opacity: 1;
 
-to {
+transform:
+translateY(0)
+scale(1);
+}
+
+100% {
 opacity: 0;
-transform: scale(1.1) translateY(-20px);
+
+transform:
+translateY(-30px)
+scale(1.05);
 }
 }
 
-/* БОЛЬШОЙ ТЕКСТ */
+
+/* =========================
+15–25 СЕКУНД
+БОЛЬШОЕ ПОСЛАНИЕ
+========================= */
 
 .long-message {
 position: absolute;
@@ -372,71 +428,84 @@ width: min(90%, 850px);
 left: 50%;
 top: 50%;
 
-transform:
-translate(-50%, -50%)
-translateY(30px);
-
 opacity: 0;
 
-font-size: clamp(17px, 3.7vw, 27px);
+transform:
+translate(-50%, -50%)
+translateY(40px)
+scale(.95);
+
+font-size:
+clamp(17px, 3.8vw, 27px);
 
 line-height: 1.55;
 
-color: #ffe7ef;
+color: #ffe6ef;
 
 text-shadow:
-0 0 10px rgba(255, 130, 170, .45),
-0 0 25px rgba(255, 70, 130, .25);
+0 0 10px rgba(255,130,170,.45),
+0 0 25px rgba(255,70,130,.25);
 
 animation:
-longIn 1.5s ease forwards 7.7s,
-longOut 1s ease forwards 12.2s;
+longMessageAnimation 10s ease forwards 15s;
 }
 
 .long-message p {
-margin: 0 0 10px;
+margin: 0 0 12px;
 }
 
 .long-message .thanks {
-margin-top: 15px;
+margin-top: 18px;
 
 color: #ffd1df;
 
 text-shadow:
-0 0 15px rgba(255, 80, 140, .6);
+0 0 15px rgba(255,80,140,.7);
 }
 
-@keyframes longIn {
+@keyframes longMessageAnimation {
 
-from {
+0% {
 opacity: 0;
 
 transform:
 translate(-50%, -50%)
-translateY(30px);
+translateY(40px)
+scale(.95);
 }
 
-to {
+15% {
 opacity: 1;
 
 transform:
 translate(-50%, -50%)
-translateY(0);
-}
+translateY(0)
+scale(1);
 }
 
-@keyframes longOut {
+80% {
+opacity: 1;
 
-to {
+transform:
+translate(-50%, -50%)
+translateY(0)
+scale(1);
+}
+
+100% {
 opacity: 0;
 
 transform:
 translate(-50%, -50%)
-translateY(-25px);
+translateY(-35px)
+scale(1.03);
 }
 }
 
-/* ЛЕТЯЩИЕ СЕРДЕЧКИ */
+
+/* =========================
+ЛЕТАЮЩИЕ СЕРДЕЧКИ
+========================= */
 
 .floating-heart {
 position: absolute;
@@ -449,14 +518,15 @@ color: #ff6b98;
 
 text-shadow:
 0 0 8px #ff477d,
-0 0 20px rgba(255, 71, 125, .7);
-
-animation: flyHeart linear forwards;
+0 0 20px rgba(255,71,125,.7);
 
 pointer-events: none;
+
+animation:
+floatingHeart linear forwards;
 }
 
-@keyframes flyHeart {
+@keyframes floatingHeart {
 
 0% {
 transform:
@@ -481,52 +551,66 @@ opacity: 0;
 }
 }
 
-/* ФИНАЛ */
+
+/* =========================
+25–30 СЕКУНД
+ФИНАЛ
+========================= */
 
 .final {
 position: absolute;
 
-width: 92%;
+width: 94%;
 
 opacity: 0;
 
-z-index: 20;
+transform:
+translateY(40px)
+scale(.75);
 
 animation:
-finalIn 1.3s ease forwards 12.7s;
+finalAnimation 5s ease forwards 25s;
 }
 
 .final h2 {
 margin: 0;
 
-font-size: clamp(24px, 6vw, 42px);
+font-size:
+clamp(25px, 6vw, 43px);
 
 color: white;
 
 text-shadow:
 0 0 15px #ff709c,
-0 0 35px #ff477d;
+0 0 35px #ff477d,
+0 0 70px rgba(255,71,125,.7);
 }
 
-/* ПИН */
+
+/* =========================
+СТИЛИЗОВАННЫЙ РОБОТ-ПИНГВИН
+========================= */
 
 .pin {
 position: relative;
 
-width: 100px;
-height: 125px;
+width: 105px;
+height: 130px;
 
 margin: 22px auto 12px;
 
-background: #252938;
+background: #292c3b;
 
-border-radius: 48% 48% 45% 45%;
+border-radius:
+48% 48%
+45% 45%;
 
 box-shadow:
 0 0 20px rgba(255,255,255,.15),
-0 0 50px rgba(255,80,140,.35);
+0 0 50px rgba(255,90,140,.35);
 
-animation: pinFloat 2s ease-in-out infinite;
+animation:
+pinFloat 2s ease-in-out infinite;
 }
 
 .pin::before {
@@ -534,13 +618,13 @@ content: "";
 
 position: absolute;
 
-width: 70px;
-height: 78px;
+width: 74px;
+height: 83px;
 
 left: 15px;
-top: 32px;
+top: 34px;
 
-background: #f4f4f4;
+background: #f5f5f5;
 
 border-radius: 50%;
 }
@@ -551,7 +635,7 @@ position: absolute;
 width: 9px;
 height: 9px;
 
-top: 43px;
+top: 45px;
 
 background: #111;
 
@@ -561,11 +645,11 @@ z-index: 5;
 }
 
 .eye.left {
-left: 30px;
+left: 31px;
 }
 
 .eye.right {
-right: 30px;
+right: 31px;
 }
 
 .beak {
@@ -573,15 +657,20 @@ position: absolute;
 
 z-index: 6;
 
-top: 56px;
-left: 41px;
+top: 58px;
+left: 43px;
 
 width: 0;
 height: 0;
 
-border-left: 9px solid transparent;
-border-right: 9px solid transparent;
-border-top: 13px solid #ffad32;
+border-left:
+9px solid transparent;
+
+border-right:
+9px solid transparent;
+
+border-top:
+14px solid #ffad32;
 }
 
 .pin-heart {
@@ -589,49 +678,80 @@ position: absolute;
 
 z-index: 7;
 
-top: 72px;
-left: 37px;
+top: 75px;
+left: 39px;
 
-font-size: 25px;
+font-size: 26px;
+
+filter:
+drop-shadow(
+0 0 8px
+rgba(255,60,120,.8)
+);
 }
 
 @keyframes pinFloat {
 
 0%, 100% {
-transform: translateY(0) rotate(-2deg);
+transform:
+translateY(0)
+rotate(-2deg);
 }
 
 50% {
-transform: translateY(-8px) rotate(2deg);
+transform:
+translateY(-8px)
+rotate(2deg);
 }
 }
 
-/* ФИНАЛЬНАЯ ФРАЗА */
+
+/* ФИНАЛЬНАЯ НАДПИСЬ */
 
 .final-text {
-font-size: clamp(21px, 5vw, 31px);
+margin-top: 5px;
+
+font-size:
+clamp(20px, 5vw, 31px);
 
 color: #ffd0df;
 
 text-shadow:
-0 0 12px rgba(255, 100, 160, .7),
-0 0 30px rgba(255, 70, 130, .4);
+0 0 12px rgba(255,100,160,.7),
+0 0 30px rgba(255,70,130,.4);
 }
 
-@keyframes finalIn {
+@keyframes finalAnimation {
 
-from {
+0% {
 opacity: 0;
-transform: scale(.7) translateY(25px);
+
+transform:
+translateY(40px)
+scale(.75);
 }
 
-to {
+20% {
 opacity: 1;
-transform: scale(1) translateY(0);
+
+transform:
+translateY(0)
+scale(1);
+}
+
+100% {
+opacity: 1;
+
+transform:
+translateY(0)
+scale(1);
 }
 }
 
-/* ТЕЛЕФОН */
+
+/* =========================
+МОБИЛЬНЫЕ ТЕЛЕФОНЫ
+========================= */
 
 @media (max-width: 600px) {
 
@@ -644,15 +764,19 @@ line-height: 1.45;
 }
 
 .long-message p {
-margin-bottom: 8px;
+margin-bottom: 9px;
+}
+
+.first-message p {
+font-size: 20px;
 }
 
 .heart {
 width: 78px;
 height: 78px;
 
-left: 46px;
-top: 46px;
+left: 51px;
+top: 51px;
 }
 
 .heart::before,
@@ -669,34 +793,44 @@ top: -39px;
 left: 39px;
 }
 }
+
 </style>
 </head>
+
 
 <body>
 
 <div class="scene">
 
+<!-- ЗВЁЗДЫ -->
+
 <div class="stars" id="stars"></div>
+
 
 <div class="content">
 
-<!-- НАЧАЛО -->
+
+<!-- 0–4 СЕКУНДЫ -->
 
 <div class="intro">
 Для одной особенной девушки...
 </div>
 
-<!-- СЕРДЦЕ -->
+
+<!-- 4–10 СЕКУНД -->
 
 <div class="heart-box">
 <div class="heart"></div>
 </div>
 
-<!-- ПЕРВАЯ НАДПИСЬ -->
+
+<!-- 10–15 СЕКУНД -->
 
 <div class="first-message">
 
-<h1>Танюша</h1>
+<h1>
+Танюша
+</h1>
 
 <p>
 Я тебя очень люблю,<br>
@@ -705,7 +839,8 @@ left: 39px;
 
 </div>
 
-<!-- БОЛЬШОЕ ПОСЛАНИЕ -->
+
+<!-- 15–25 СЕКУНД -->
 
 <div class="long-message">
 
@@ -731,7 +866,8 @@ left: 39px;
 
 </div>
 
-<!-- ФИНАЛ -->
+
+<!-- 25–30 СЕКУНД -->
 
 <div class="final">
 
@@ -739,9 +875,11 @@ left: 39px;
 И это только начало...
 </h2>
 
+
 <div class="pin">
 
 <div class="eye left"></div>
+
 <div class="eye right"></div>
 
 <div class="beak"></div>
@@ -751,6 +889,7 @@ left: 39px;
 </div>
 
 </div>
+
 
 <div class="final-text">
 Мы с Пином тебя очень любим
@@ -762,15 +901,20 @@ left: 39px;
 
 </div>
 
+
 <script>
 
-/* СОЗДАЁМ ЗВЁЗДЫ */
+/* =========================
+ЗВЁЗДЫ
+========================= */
 
-const stars = document.getElementById("stars");
+const stars =
+document.getElementById("stars");
 
-for (let i = 0; i < 120; i++) {
+for (let i = 0; i < 130; i++) {
 
-const star = document.createElement("div");
+const star =
+document.createElement("div");
 
 star.className = "star";
 
@@ -787,9 +931,11 @@ stars.appendChild(star);
 }
 
 
-/* ЛЕТАЮЩИЕ СЕРДЕЧКИ */
+/* =========================
+ЛЕТАЮЩИЕ СЕРДЕЧКИ
+========================= */
 
-function createFloatingHeart() {
+function createHeart() {
 
 const heart =
 document.createElement("div");
@@ -818,92 +964,21 @@ setTimeout(
 );
 }
 
+
+/*
+Начинаем после появления сердца.
+*/
+
 setTimeout(() => {
 
 setInterval(
-createFloatingHeart,
-300
+createHeart,
+350
 );
 
-}, 2500);
-
-
-/* ВСПЫШКА ВОКРУГ СЕРДЦА */
-
-setTimeout(() => {
-
-for (let i = 0; i < 35; i++) {
-
-const particle =
-document.createElement("div");
-
-particle.style.position =
-"absolute";
-
-particle.style.left = "50%";
-particle.style.top = "50%";
-
-particle.style.width = "5px";
-particle.style.height = "5px";
-
-particle.style.borderRadius =
-"50%";
-
-particle.style.background =
-"#ff8eb0";
-
-particle.style.boxShadow =
-"0 0 10px #ff477d";
-
-particle.style.zIndex = "8";
-
-const angle =
-Math.random() * Math.PI * 2;
-
-const distance =
-80 + Math.random() * 220;
-
-particle.animate(
-
-[
-{
-transform:
-"translate(-50%, -50%) scale(1)",
-opacity: 1
-},
-
-{
-transform:
-`translate(
-calc(-50% + ${Math.cos(angle) * distance}px),
-calc(-50% + ${Math.sin(angle) * distance}px)
-) scale(0)`,
-opacity: 0
-}
-],
-
-{
-duration:
-1000 + Math.random() * 1000,
-
-easing: "ease-out"
-}
-);
-
-document
-.querySelector(".scene")
-.appendChild(particle);
-
-setTimeout(
-() => particle.remove(),
-2200
-);
-}
-
-}, 4200);
+}, 3500);
 
 </script>
 
 </body>
 </html>
-
